@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"flag"
 	"log"
 	"time"
 )
@@ -9,22 +9,27 @@ import (
 var expectedFormat = "2006-01-02"
 
 // parseTime validates and parses a given date string.
-func parseTime(target string) time.Time {
-	t, _ := time.Parse(expectedFormat, target)
-	return t
+func parseTime(target string) (parsedTime time.Time) {
+	parsedTime, e := time.Parse(expectedFormat, target)
+	isPastDate := time.Now().After(parsedTime)
+
+	if e != nil || isPastDate {
+		log.Fatal("invalid date")
+	}
+	return
 }
 
 // calcSleeps returns the number of sleeps until the target.
 func calcSleeps(target time.Time) float64 {
-	today := time.Now()
 	d := time.Until(target)
-	fmt.Println(today, d)
 	return d.Hours() / 24
 }
 
-func main() {
-	bday := "2023-06-21"
-	target := parseTime(bday)
-	log.Printf("You have %d sleeps until your birthday. Hurray!",
-		int(calcSleeps(target)))
+// 1. rename to main
+// 2. run in terminal: go run .\sleepsUntilYourBirthday.go -bday 2023-06-21
+func mainSleepsUntilYourBirthday() {
+	bday := flag.String("bday", "", "Your next bday in YYYY-MM-DD format")
+	flag.Parse()
+	target := parseTime(*bday)
+	log.Printf("You have %d sleeps until your birthday. Hurray!", int(calcSleeps(target)))
 }
