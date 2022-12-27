@@ -1,3 +1,5 @@
+// this task is about: Parsing times and calculating durations
+
 package main
 
 import (
