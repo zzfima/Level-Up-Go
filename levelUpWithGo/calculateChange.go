@@ -1,3 +1,5 @@
+// this task is about: algorithmic problem, exploring maps and slices
+
 package main
 
 import (
@@ -49,6 +51,8 @@ func printCoins(change map[coin]int) {
 	}
 }
 
+// 1 rename to main
+// 2 run in terminal: go run .\calculateChange.go -amount 34.30
 func mainCalculateChange() {
 	amount := flag.Float64("amount", 0.0, "The amount you want to make change for")
 	flag.Parse()
