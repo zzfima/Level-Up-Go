@@ -10,8 +10,6 @@ import (
 	"time"
 )
 
-const path = "entries.json"
-
 // raffleEntry is the struct we unmarshal raffle entries into
 type raffleEntry struct {
 	ID   string `json:"id"`
@@ -19,8 +17,8 @@ type raffleEntry struct {
 }
 
 // importData reads the raffle entries from file and creates the entries slice.
-func importData() []raffleEntry {
-	entriesFileHandler, e := os.Open("entries.json")
+func importUsersData() []raffleEntry {
+	entriesFileHandler, e := os.Open("usersEntries.json")
 	if e != nil {
 		log.Fatal("Can not open entries file")
 	}
@@ -40,7 +38,7 @@ func getWinner(entries []raffleEntry) raffleEntry {
 }
 
 func mainRaffleWinner() {
-	entries := importData()
+	entries := importUsersData()
 	log.Println("And... the raffle winning entry is...")
 	winner := getWinner(entries)
 	time.Sleep(500 * time.Millisecond)
