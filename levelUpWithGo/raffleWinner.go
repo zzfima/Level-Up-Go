@@ -18,7 +18,7 @@ type raffleEntry struct {
 
 // importData reads the raffle entries from file and creates the entries slice.
 func importUsersData() []raffleEntry {
-	entriesFileHandler, e := os.Open("usersEntries.json")
+	entriesFileHandler, e := os.Open("usersEntries1.json")
 	if e != nil {
 		log.Fatal("Can not open entries file")
 	}
