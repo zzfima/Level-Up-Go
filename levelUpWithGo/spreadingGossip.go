@@ -44,10 +44,10 @@ var gossipMap = make(map[string]int)
 
 // spreadGossip ensures that all the friends in the map have heard the news
 func spreadGossip(root Friend, friends Friends) {
-	for _, friendId := range root.Friends {
-		if gossipMap[friendId] == 0 {
-			gossipMap[friendId]++
-			f := friends.getFriend(friendId)
+	for _, friendID := range root.Friends {
+		if gossipMap[friendID] == 0 {
+			gossipMap[friendID]++
+			f := friends.getFriend(friendID)
 			f.hearGossip()
 			spreadGossip(f, friends)
 		}
@@ -77,7 +77,7 @@ func importFriendsEntities() Friends {
 	}
 }
 
-func main() {
+func mainSpreadingGossip() {
 	friends := importFriendsEntities()
 	root := friends.getRandomFriend()
 	root.hearGossip()
