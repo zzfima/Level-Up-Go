@@ -36,7 +36,7 @@ func repeat(n int, message string) {
 
 // 1 rename to main
 // 2 run in terminal: go run .\stopCopyingMe.go -factor 2
-func main() {
+func mainStopCopyingMe() {
 	factor := flag.Int64("factor", 0, "The fan-out factor to repeat by")
 	flag.Parse()
 	n := int(*factor)
